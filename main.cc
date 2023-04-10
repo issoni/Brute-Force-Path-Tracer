@@ -3,6 +3,7 @@ Author: Ishika Soni
 Resource Used: Ray Tracing in One Weekend 
 Program: A simple brute-force path tracer  
 */
+
 #include "color.h"
 #include "vec3.h"
 
