@@ -58,19 +58,12 @@ int main() {
 
             // // R (red), g (green), and b (blue) [blue only stays at 0.25] start to 
             // // decrement and their shades change slowly since the decrement is only by 1 
-            // auto r = double(i) / (image_width - 1); 
-            // auto g = double(j) / (image_height - 1); 
-            // auto b = 0.25; 
 
             // // Int variables for each rgb auto variable; they are multiplied by 255.999 
-            // // which is the image width and height and then casted as an int 
-            // int ir = static_cast<int>(255.999 * r); 
-            // int ig = static_cast<int>(255.999 * g);
-            // int ib = static_cast<int>(255.999 * b); 
+            // // which is the image width and height and then casted as an int
 
             // // Image output: this will also be the written output of the image, not only 
             // // the image itself 
-            // std::cout << ir << ' ' << ig << ' ' << ib << '\n';
         }
     }
     // This loop goes from up to down and from left to right due to the ways the loops start 
