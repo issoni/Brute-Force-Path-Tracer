@@ -9,6 +9,7 @@
 using std::shared_ptr; 
 using std::make_shared; 
 
+// Stores a list of hittables (generic object that the ray can intersect with)
 class hittable_list : public hittable {
     public: 
         hittable_list() {}
@@ -24,12 +25,13 @@ class hittable_list : public hittable {
             objects.push_back(object);
         }
 
-        virtual bool hit (const ray& r, double t_min, double t_max, hit_record& rec) const override; 
+        virtual bool hit(const ray& r, double t_min, double t_max, hit_record& rec) const override; 
 
     public: 
         std::vector<shared_ptr<hittable> > objects; 
 }; 
 
+// Returns true if anything was hit, otherwise false 
 bool hittable_list::hit(const ray& r, double t_min, double t_max, hit_record& rec) const {
     hit_record temp_rec; 
     bool hit_anything = false; 
