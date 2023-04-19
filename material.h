@@ -5,6 +5,7 @@
 
 struct hit_record; 
 
+// Produces a scattered ray, and if scattered, say how much the ray should be attenuated 
 class material {
     public: 
         virtual bool scatter(
@@ -12,6 +13,9 @@ class material {
             ) const = 0; 
 }; 
 
+// Sub-classes (lambertian, metal, dielectric) inheriting from material superclass
+
+// Higher probability for ray scattering close to the normal, but distribution is more uniform
 class lambertian : public material {
     public:
         lambertian(const color& a) : albedo(a) {} 
@@ -35,6 +39,7 @@ class lambertian : public material {
         color albedo; 
 };
 
+// Reflects ray that get scattered using the reflectance function written in vec3
 class metal : public material {
     public:
         metal(const color& a, double f) : albedo(a), fuzz(f < 1 ? f : 1) {}
@@ -50,10 +55,11 @@ class metal : public material {
 
     public: 
         color albedo; 
-        double fuzz; // Metal material fuzziness 
+        // Metal material fuzziness
+        double fuzz;  
 };
 
-// Dielectric material class that always refracts 
+// Generating one scattered ray per refraction
 class dielectric : public material {
     public: 
         dielectric(double index_of_refraction) : ir(index_of_refraction) {}
@@ -82,7 +88,8 @@ class dielectric : public material {
         }
 
     public: 
-        double ir; // Index of Refraction
+        // Index of refraction
+        double ir; 
 
     private: 
         // Full glass material 
