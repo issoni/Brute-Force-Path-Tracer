@@ -47,7 +47,17 @@ int main() {
     const int samples_per_pixel = 100; 
     const int max_depth = 50; 
 
-    // World (with metal spheres)
+    // World 
+
+    auto R = cos(pi/4); 
+    hittable_list world; 
+
+    auto material_left = make_shared<lambertian>(color(0, 0, 1)); 
+    auto material_right = make_shared<lambertian>(color(1, 0, 0)); 
+
+    world.add(make_shared<sphere>(point3(-R, 0, -1), R, material_left));
+    world.add(make_shared<sphere>(point3(R, 0, -1), R, material_right)); 
+    /*
     hittable_list world; 
 
     auto material_ground = make_shared<lambertian>(color(0.8, 0.8, 0.0)); 
@@ -60,9 +70,10 @@ int main() {
     world.add(make_shared<sphere>(point3(-1.0, 0.0, -1.0), 0.5, material_left)); 
     world.add(make_shared<sphere>(point3(-1.0, 0.0, -1.0), -0.4, material_left));
     world.add(make_shared<sphere>(point3(1.0, 0.0, -1.0), 0.5, material_right));  
+    */ 
 
     // Camera 
-    camera cam; 
+    camera cam(90.0, aspect_ratio); 
 
     // Render 
 
