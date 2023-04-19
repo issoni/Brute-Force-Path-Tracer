@@ -1,10 +1,11 @@
 /*
 Author: Ishika Soni 
-Resource Used: Ray Tracing in One Weekend 
+Resource Used: Ray Tracing in One Weekend (https://raytracing.github.io/books/RayTracingInOneWeekend.html)
 Program: A simple brute-force path tracer  
 */
 
-#include "rtweekend.h"
+// Utilities class 
+#include "rtweekend.h" 
 
 #include "color.h"
 #include "hittable_list.h"
@@ -14,12 +15,16 @@ Program: A simple brute-force path tracer
 
 #include <iostream>
 
+// Outputs a scene with a lot of random spheres (cover image of the book used)
 hittable_list random_scene() {
+    // Initialize a world 
     hittable_list world; 
 
+    // Create a ground using a certain shape (we only have sphere so far) and a certain material
     auto ground_material = make_shared<lambertian>(color(0.5, 0.5, 0.5)); 
     world.add(make_shared<sphere>(point3(0, -1000, 0), 1000, ground_material)); 
 
+    // Add multiple random spheres with varying material (diffuse, metal or glass)
     for (int a = -11; a < 11; a++) {
         for (int b = -11; b < 11; b++) {
             auto choose_mat = random_double(); 
@@ -33,12 +38,14 @@ hittable_list random_scene() {
                     auto albedo = color::random() * color::random(); 
                     sphere_material = make_shared<lambertian>(albedo); 
                     world.add(make_shared<sphere>(center, 0.2, sphere_material));
+
                 } else if (choose_mat < 0.95) {
                     // Metal 
                     auto albedo = color::random(0.5, 1); 
                     auto fuzz = random_double(0, 0.5); 
                     sphere_material = make_shared<metal>(albedo, fuzz); 
                     world.add(make_shared<sphere>(center, 0.2, sphere_material));
+
                 } else {
                     // Glass 
                     sphere_material = make_shared<dielectric>(1.5); 
@@ -48,6 +55,7 @@ hittable_list random_scene() {
         }
     }
 
+    // Three bigger sized spheres again varying in material 
     auto material1 = make_shared<dielectric>(1.5); 
     world.add(make_shared<sphere>(point3(0, 1, 0), 1.0, material1)); 
 
@@ -60,34 +68,41 @@ hittable_list random_scene() {
     return world; 
 }
 
+// Returns the color of the background (a simple gradient)
+// @r: the ray that is being sent into the scene 
+// @world: the given world 
+// @depth: the maximum recursion depth 
 color ray_color(const ray& r, const hittable& world, int depth) {
     hit_record rec; 
 
-    // If we've exceeded the ray bounce limit, no more light is gathered. 
+    // If we've exceeded the ray bounce limit, no more light is gathered
     if (depth <= 0) {
         return color(0, 0, 0);
     }
 
-    // Calculating reflected ray origins with tolerance. Ray color with scattered reflectance. 
+    // Calculating reflected ray origins with tolerance 
     if (world.hit(r, 0.001, infinity, rec)) {
         ray scattered; 
         color attenuation; 
+
         if(rec.mat_ptr->scatter(r, rec, attenuation, scattered)) {
+            // Ray color with scattered reflectance
             return attenuation * ray_color(scattered, world, depth - 1); 
         }
         return color(0, 0, 0); 
     }
 
+    // The ray r goes to approximately the pixel centers 
     vec3 unit_direction = unit_vector(r.direction()); 
     auto t = 0.5 * (unit_direction.y() + 1.0); 
     return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(0.5, 0.7, 1.0);
 }
 
-
+// Used to render the final scene and use all the different classes we have 
 int main() {
     
     // Image 
-    // Width and height of the image that will be outputted 
+
     const auto aspect_ratio = 3.0 / 2.0; 
     const int image_width = 1200; 
     const int image_height = static_cast<int>(image_width / aspect_ratio); 
@@ -109,7 +124,7 @@ int main() {
     world.add(make_shared<sphere>(point3(R, 0, -1), R, material_right)); 
     */
 
-    /* Zoomed in defocused blur
+    /* Zoomed in defocused blur with a main sphere with two spheres on left and right 
     hittable_list world; 
 
     auto material_ground = make_shared<lambertian>(color(0.8, 0.8, 0.0)); 
@@ -125,6 +140,7 @@ int main() {
     */
 
     // Camera 
+
     point3 lookfrom(13, 2, 3); 
     point3 lookat(0, 0, 0); 
     vec3 vup(0, 1, 0); 
@@ -135,18 +151,14 @@ int main() {
 
     // Render 
 
-    // std::cout is the written output of the image, it begins with:
     std::cout << "P3/n" << image_width << ' ' << image_width << "\n255\n"; 
-
-    // A for loop that starts with 255 (the height - 1) and decrements by 1
+    
     for (int j = image_height - 1; j >= 0; --j) {
         
         // Progress indicator: tells us how many lines remaining after each decrement 
         // of the loop 
         std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
         
-        // Another loop (nested for loop) that starts with 0 and increments till the 
-        // width of the image, 255
         for (int i = 0; i < image_width; ++i) {
             color pixel_color(0, 0, 0); 
 
@@ -162,19 +174,8 @@ int main() {
             // Rendering with multi-sampled pixels 
             write_color(std::cout, pixel_color, samples_per_pixel); 
 
-            // // R (red), g (green), and b (blue) [blue only stays at 0.25] start to 
-            // // decrement and their shades change slowly since the decrement is only by 1 
-
-            // // Int variables for each rgb auto variable; they are multiplied by 255.999 
-            // // which is the image width and height and then casted as an int
-
-            // // Image output: this will also be the written output of the image, not only 
-            // // the image itself 
         }
     }
-    // This loop goes from up to down and from left to right due to the ways the loops start 
-    // and end 
-
     // Progress indicator: the program is finished running 
     std::cerr << "\nDone.\n";
     // std::cerr is used for normal written output in the terminal since std::cout is being 
