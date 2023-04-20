@@ -8,6 +8,7 @@ A path tracer that outputs an image with lots of random spheres varying in color
 <img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main1.png" width="256"/> 
 1st render: My first render of a PPM image 
 
+<div>
 
 <img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main2.png" width="400"/> 
 2nd render: Blue-to-white gradient background depending on ray Y coordinate  
