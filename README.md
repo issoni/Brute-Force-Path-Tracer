@@ -21,6 +21,68 @@ Simple red sphere
 <img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main4.png" width="400"/>
 Sphere colored according to its normal vectors 
 
+### 5th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main5.png" width="400"/>
+Normals-colored sphere with ground
 
+### 6th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main6.png" width="400"/>
+Anti-aliased render of the 5th render 
 
+### 7th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main7.png" width="400"/>
+Diffuse sphere
 
+### 8th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main8.png" width="400"/>
+Diffuse sphere, with gamma correction 
+
+### 9th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main9.png" width="400"/>
+Lambertian spheres 
+
+### 10th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main10.png" width="400"/>
+Diffuse spheres with hemispherical scattering 
+
+### 11th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main11.png" width="400"/>
+Shiny metal 
+
+### 12th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main12.png" width="400"/>
+Fuzzed metal
+
+### 13th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main13.png" width="400"/>
+Glass sphere that always refracts 
+
+### 14th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main14.png" width="400"/>
+Glass sphere that sometimes refracts 
+
+### 15th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main15.png" width="400"/>
+A hollow glass sphere 
+
+### 16th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main16.png" width="400"/>
+A wide-angle view
+
+### 17th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main17.png" width="400"/>
+A distant view 
+
+### 18th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main18.png" width="400"/>
+A zoomed-in view
+
+### 19th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main19.png" width="400"/>
+Spheres with depth-of-field 
+
+### 20th Render
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main20.png" width="400"/>
+Final scene (image on the cover of the book used) 
+
+[The Book Series](https://raytracing.github.io/)
