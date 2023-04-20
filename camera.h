@@ -3,13 +3,15 @@
 
 #include "rtweekend.h"
 
+// A simple camera adjustable depth-of-field (DOF) using the axis-aligned camera mentioned in book 
+// Manages virtual camera and related tasks of scene sampling
 class camera {
     public: 
         camera(
             point3 lookfrom, 
             point3 lookat, 
             vec3 vup, 
-            double vfov, // vertical field-of-view in degrees
+            double vfov, // Vertical field-of-view in degrees
             double aspect_ratio,
             double aperture, 
             double focus_dist
@@ -48,8 +50,8 @@ class camera {
         vec3 vertical; 
         vec3 u, v, w; 
         double lens_radius; 
-        
-}; // Camera with adjustable depth-of-field (DOF) 
+
+}; 
 
 
 #endif
