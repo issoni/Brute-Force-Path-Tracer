@@ -86,6 +86,5 @@ Spheres with depth-of-field
 Final scene (image on the cover of the book used) 
 
 ---
-***
 
 [The Book Series](https://raytracing.github.io/)
