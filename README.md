@@ -85,4 +85,7 @@ Spheres with depth-of-field
 <img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main20.png" width="400"/>
 Final scene (image on the cover of the book used) 
 
+---
+***
+
 [The Book Series](https://raytracing.github.io/)
