@@ -3,7 +3,7 @@ A path tracer that outputs an image with lots of random spheres varying in color
 # Final Scene 
 ![alt text](https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main20.png "Final Scene")
 ## Progress Shots 
-<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main1.png" width="100" height="100" />
+<img src="https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main1.png" width="200" height="400" />
 ##### First render: My first render of a PPM image! 
 ![alt text](https://github.com/issoni/Brute-Force-Path-Tracer/blob/main/renders/main2.png "Final Scene")
 
