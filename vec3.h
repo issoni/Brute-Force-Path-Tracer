@@ -6,6 +6,8 @@
 
 using std::sqrt; 
 
+// Used for colors, locations, directions, offsets 
+// Two aliases for vec3: 'point3' and 'color'
 class vec3 {
     public:
         vec3() { e[0] = 0; e[1] = 0; e[2] = 0; }
@@ -73,8 +75,8 @@ class vec3 {
             return vec3(random_double(min, max), random_double(min, max), random_double(min, max)); 
         }
 
+        // Return true if the vector is close to zero in all dimensions
         bool near_zero() const {
-            // Return true if the vector is close to zero in all dimensions.
             const auto s = 1e-8; 
             return (fabs(e[0]) < s) && (fabs(e[1]) < s) && (fabs(e[2]) < s); 
         }
@@ -83,11 +85,10 @@ class vec3 {
     public: 
         double e[3]; 
 };
-// Used double, but some ray tracers use float (either one is fine)
 
-// Type aliases for vec3 
-using point3 = vec3; // 3D point 
-using color = vec3; //RGB color 
+// Type aliases for vec3 (3D point and RGB color)
+using point3 = vec3;  
+using color = vec3;  
 
 //vec3 Utility Functions 
 
@@ -135,6 +136,8 @@ inline vec3 unit_vector(vec3 v) {
     return v / v.length(); 
 }
 
+// Rejection method: pick random point in unit cube where x, y, z range from -1 to +1
+// Reject this point aand try again if point is outside sphere
 inline vec3 random_in_unit_sphere() {
     while(true) {
         auto p = vec3::random(-1, 1); 
@@ -145,10 +148,13 @@ inline vec3 random_in_unit_sphere() {
     }
 }
 
+// Picks random points in the unit sphere and normalizes them 
 inline vec3 random_unit_vector() {
     return unit_vector(random_in_unit_sphere()); 
 }
 
+// Diffuse method that has a uniform scatter direction for all angles away from the hit point
+// (with no dependence on angle from normal)
 inline vec3 random_in_hemisphere(const vec3& normal) {
     vec3 in_unit_sphere = random_in_unit_sphere(); 
     if (dot(in_unit_sphere, normal) > 0.0) { // In the same hemisphere as the normal
@@ -158,10 +164,12 @@ inline vec3 random_in_hemisphere(const vec3& normal) {
     }
 }
 
+// v + 2b (minus in front of v since it points in)
 inline vec3 reflect(const vec3& v, const vec3& n) {
     return v - 2 * dot(v,n) * n; 
 }
 
+// Calculates a refraction ray 
 inline vec3 refract(const vec3& uv, const vec3& n, double etai_over_etat) {
     auto cos_theta = fmin(dot(-uv, n), 1.0); 
     vec3 r_out_perp = etai_over_etat * (uv + cos_theta * n); 

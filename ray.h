@@ -3,6 +3,12 @@
 
 #include "vec3.h"
 
+// P(t) = A + t*b
+// P: 3D position along a line in 3D 
+// A: ray origin 
+// b: ray direction 
+// t: a real number (negative values: go anywhere on the 3D lines, positive values: only parts in front of A, a half-line or ray)
+// Plug in different t and P(t) moves point along the ray 
 class ray {
     public: 
         ray() {}
